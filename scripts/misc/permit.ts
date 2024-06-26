@@ -7,11 +7,12 @@ import {deploy, getContractAt, getTimestampInSeconds} from '../utils/helpers';
 import {TokenPermit} from '../../typechain-types';
 
 const BLAST_WETH_ADDRESS = '0x4300000000000000000000000000000000000004';
+const BLAST_TOKEN_ADDRESS = '0xb1a5700fA2358173Fe465e6eA4Ff52E36e88E2ad';
 
 async function main() {
   const [deployer, altAccount] = await hre.ethers.getSigners(); // Get signer object
-  const tokenPermit = await deploy<TokenPermit>(deployer, 'TokenPermit', [], false);
-  //   const tokenPermit = await getContractAt('TokenPermit', BLAST_WETH_ADDRESS);
+  // const tokenPermit = await deploy<TokenPermit>(deployer, 'TokenPermit', [], false);
+  const tokenPermit = await getContractAt('TokenPermit', BLAST_WETH_ADDRESS);
 
   const NULL_VALUE = ethers.utils.parseEther('0'); // tested with 1
   const deadline = getTimestampInSeconds() + 4200;
